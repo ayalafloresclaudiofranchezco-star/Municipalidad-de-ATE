@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipalidad Distrital de Ate - Portal Ciudadano Alegre</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Fredoka & Quicksand para estética lúdica y legible -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pablo: { blue: '#1E6091', yellow: '#F4A261', lightblue: '#3A86FF' },
+                        tyrone: { orange: '#F77F00', yellow: '#FCBF49' },
+                        uniqua: { pink: '#FF4D6D', magenta: '#C77DFF', lightpink: '#FF8FA3' },
+                        tasha: { yellow: '#FFB703', orange: '#FB8500' },
+                        austin: { purple: '#7209B7', cyan: '#4CC9F0', violet: '#560BAD' },
+                        ate: { green: '#2A9D8F', teal: '#00B4D8', red: '#E63946' }
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    
+</head>
+<body class="text-gray-800">
+
+    <!-- Top Banner Alerta de Serenazgo / Emergencias -->
+    <div class="bg-tyrone-gradient text-white font-semibold py-2 px-4 shadow-md flex justify-between items-center text-sm md:text-base border-b-4 border-yellow-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-title animate-pulse">EMERGENCIA 24/7</span>
+                <span><i class="fa-solid fa-shield-halved mr-1"></i> Central Serenazgo Ate: <strong>(01) 351-5000 / 105</strong></span>
+            </div>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#tramites" class="hover:underline flex items-center gap-1"><i class="fa-solid fa-laptop"></i> Trámites en Línea</a>
+                <span>|</span>
+                <span id="current-date" class="text-xs bg-black/20 px-3 py-1 rounded-full">Cargando fecha...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Encabezado Principal y Menú de Navegación -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-lg border-b-4 border-pablo-lightblue">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <!-- Logo de Ate Estilizado -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <img style="width: 50px;" src="IMG/Logo.jpg">
+                <div>
+                    <h1 class="text-2xl font-bold text-pablo-blue tracking-wide leading-tight">Municipalidad de Ate</h1>
+                    <p class="text-xs font-semibold text-tyrone-orange">Tierra de Historia, Progreso y Alegría</p>
+                </div>
+            </a>
+
+            
+            <!-- Navegación Flotante -->
+            <nav class="hidden md:flex items-center space-x-2">
+                <a href="#inicio" class="px-4 py-2 rounded-xl text-pablo-blue font-title hover:bg-sky-100 font-semibold transition">Inicio</a>
+                <a href="#noticias" class="px-4 py-2 rounded-xl text-tyrone-orange font-title hover:bg-amber-100 font-semibold transition">Noticias</a>
+                <a href="#alcaldia" class="px-4 py-2 rounded-xl text-austin-purple font-title hover:bg-purple-100 font-semibold transition">Autoridades</a>
+                <a href="#turismo" class="px-4 py-2 rounded-xl text-uniqua-pink font-title hover:bg-pink-100 font-semibold transition">Turismo</a>
+                <a href="#tramites" class="px-4 py-2 rounded-xl text-tasha-orange font-title hover:bg-orange-100 font-semibold transition">Servicios</a>
+                <a href="#mesa-partes" class="bg-austin-gradient text-white px-5 py-2.5 rounded-full font-title shadow-md hover:opacity-90 hover:scale-105 transition">Mesa de Partes</a>
+            </nav>
+
+            <!-- Botón Menú Móvil -->
+            <button id="mobile-menu-btn" class="md:hidden text-pablo-blue text-2xl p-2 focus:outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-sky-100 px-4 py-4 space-y-2">
+            <a href="#inicio" class="block px-4 py-2 rounded-lg bg-sky-50 text-pablo-blue font-bold">Inicio</a>
+            <a href="#noticias" class="block px-4 py-2 rounded-lg bg-amber-50 text-tyrone-orange font-bold">Noticias</a>
+            <a href="#alcaldia" class="block px-4 py-2 rounded-lg bg-purple-50 text-austin-purple font-bold">Autoridades</a>
+            <a href="#turismo" class="block px-4 py-2 rounded-lg bg-pink-50 text-uniqua-pink font-bold">Turismo</a>
+            <a href="#tramites" class="block px-4 py-2 rounded-lg bg-orange-50 text-tasha-orange font-bold">Servicios</a>
+            <a href="#mesa-partes" class="block text-center bg-austin-gradient text-white py-2 rounded-lg font-bold">Mesa de Partes Virtual</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION - Banner Interactivo Backyardigans -->
+    <section id="inicio" class="relative overflow-hidden pt-8 pb-20 bg-pablo-gradient text-white">
+        <!-- Elementos Flotantes Decorativos -->
+        <div class="absolute top-10 left-10 w-24 h-24 bg-yellow-300/30 rounded-full blur-xl animate-pulse"></div>
+        <div class="absolute bottom-10 right-10 w-36 h-36 bg-pink-400/30 rounded-full blur-2xl animate-pulse"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Texto del Hero -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-yellow-400 text-pablo-blue px-4 py-1.5 rounded-full font-title font-bold text-sm shadow-md">
+                        <i class="fa-solid fa-star"></i>
+                        <span>¡Bienvenidos al Portal Municipal de Ate!</span>
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-bold leading-tight font-title">
+                        Un Ate más <span class="text-yellow-300 underline decoration-wavy decoration-pink-400">seguro, limpio</span> y lleno de oportunidades
+                    </h2>
+                    <p class="text-lg md:text-xl text-sky-100 max-w-2xl font-semibold">
+                        Construyendo juntos el futuro de Vitarte, Huaycán, Salamanca, Santa Clara y todo nuestro querido distrito. ¡Explora nuestros trámites rápidos e infórmate!
+                    </p>
+                    <!-- Accesos Rápidos Hero -->
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
+                        <a href="#calculadora" class="bg-tyrone-orange hover:bg-amber-600 text-white px-6 py-3.5 rounded-2xl font-title text-lg shadow-lg transform hover:-translate-y-1 transition flex items-center space-x-2 border-2 border-yellow-200">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Calcular Arbitrios</span>
+                        </a>
+                        <a href="#tramites" class="bg-white text-pablo-blue hover:bg-sky-50 px-6 py-3.5 rounded-2xl font-title text-lg shadow-lg transform hover:-translate-y-1 transition flex items-center space-x-2 border-2 border-pablo-lightblue">
+                            <i class="fa-solid fa-file-signature"></i>
+                            <span>Licencia Express</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Slider/Cards Destacados en Hero -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border-4 border-white/40 shadow-2xl space-y-4">
+                        <div class="flex justify-between items-center border-b border-white/20 pb-3">
+                            <h3 class="font-title text-xl text-yellow-300 flex items-center gap-2">
+                                <i class="fa-solid fa-bullhorn"></i> Comunicados Principales
+                            </h3>
+                            <span class="text-xs bg-pink-500 text-white px-2.5 py-1 rounded-full font-bold">HOY</span>
+                        </div>
+                        
+                        <!-- Tarjetas de Anuncios -->
+                        <div class="space-y-3">
+                            <div class="bg-white text-gray-800 p-4 rounded-2xl shadow-md border-l-8 border-uniqua-pink flex items-start space-x-3 hover:bg-pink-50 transition cursor-pointer">
+                                <div class="bg-pink-100 p-3 rounded-xl text-uniqua-pink">
+                                    <i class="fa-solid fa-truck-medical text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold font-title text-base text-gray-900">Gran Campaña de Salud Integral</h4>
+                                    <p class="text-xs text-gray-600">Atención gratuita en Huaycán - Zona B este sábado desde las 8:00 AM.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white text-gray-800 p-4 rounded-2xl shadow-md border-l-8 border-tasha-orange flex items-start space-x-3 hover:bg-amber-50 transition cursor-pointer">
+                                <div class="bg-amber-100 p-3 rounded-xl text-tasha-orange">
+                                    <i class="fa-solid fa-tree text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold font-title text-base text-gray-900">Arborización en Prolongación Javier Prado</h4>
+                                    <p class="text-xs text-gray-600">Más de 500 nuevos árboles para un Ate más verde y saludable.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white text-gray-800 p-4 rounded-2xl shadow-md border-l-8 border-austin-purple flex items-start space-x-3 hover:bg-purple-50 transition cursor-pointer">
+                                <div class="bg-purple-100 p-3 rounded-xl text-austin-purple">
+                                    <i class="fa-solid fa-percent text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold font-title text-base text-gray-900">Amnistía Tributaria Ate 2026</h4>
+                                    <p class="text-xs text-gray-600">Aprovecha hasta el 90% de descuento en papeletas y arbitrios pasados.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider Wave SVG -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-12 md:h-20" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.37,130.83,121.5,200,115.8,241.6,112.4,282.8,92.5,321.39,56.44Z" fill="#FAF5FF"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- NOTICIAS Y ACTIVIDADES MUNICIPALES -->
+    <section id="noticias" class="py-12 bg-purple-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="bg-austin-purple text-white font-title text-sm px-4 py-1 rounded-full uppercase tracking-wider">Acontecimientos Distritales</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-title text-gray-800 mt-2">Noticias Destacadas de Ate</h2>
+                <div class="w-24 h-1.5 bg-austin-cyan mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Noticia 1 (Estilo Uniqua) -->
+                <div class="bg-white rounded-3xl overflow-hidden pop-card border-t-8 border-uniqua-pink flex flex-col">
+                    <div class="h-48 bg-pink-200 relative overflow-hidden flex items-center justify-center">
+                        <div class="absolute inset-0 uniqua-pattern opacity-30"></div>
+                        <img src="IMG/Noticia1.jpg">
+                        <span class="absolute top-4 right-4 bg-white text-uniqua-pink font-bold text-xs px-3 py-1 rounded-full shadow">SEGURIDAD</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 28 de Octubre, 2026</span>
+                            <h3 class="text-xl font-bold font-title text-gray-800 mt-2 mb-3 hover:text-uniqua-pink transition">Nuevas Cámaras de Vigilancia con IA en Vitarte</h3>
+                            <p class="text-gray-600 text-sm">Se instalaron 80 cámaras inteligentes interconectadas al centro de monitoreo de Serenazgo para reforzar la seguridad en puntos clave.</p>
+                        </div>
+                        <button onclick="showNewsModal('Nuevas Cámaras de Vigilancia', 'Se han entregado cámaras de última tecnología con inteligencia artificial para lectura de placas y reconocimiento en las zonas de mayor tránsito de Vitarte y Salamanca.')" class="mt-4 text-uniqua-pink font-bold font-title text-sm flex items-center gap-2 hover:translate-x-2 transition">
+                            Leer más <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Noticia 2 (Estilo Pablo) -->
+                <div class="bg-white rounded-3xl overflow-hidden pop-card border-t-8 border-pablo-blue flex flex-col">
+                    <div class="h-48 bg-sky-200 relative overflow-hidden flex items-center justify-center">
+                        <img src="IMG/Noticia2.jpg">
+                        <span class="absolute top-4 right-4 bg-white text-pablo-blue font-bold text-xs px-3 py-1 rounded-full shadow">OBRAS</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 25 de Octubre, 2026</span>
+                            <h3 class="text-xl font-bold font-title text-gray-800 mt-2 mb-3 hover:text-pablo-blue transition">Inauguración de Pistas y Veredas en Pariachi</h3>
+                            <p class="text-gray-600 text-sm">Más de 5,000 vecinos beneficiados con la remodelación integral de vías accesibles y señalizadas en el sector de Huaycán - Pariachi.</p>
+                        </div>
+                        <button onclick="showNewsModal('Pistas y Veredas Pariachi', 'La obra contempló más de 12,000 m² de asfalto en caliente, veredas de concreto, rampas de accesibilidad para personas con discapacidad y áreas verdes periféricas.')" class="mt-4 text-pablo-blue font-bold font-title text-sm flex items-center gap-2 hover:translate-x-2 transition">
+                            Leer más <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Noticia 3 (Estilo Tasha) -->
+                <div class="bg-white rounded-3xl overflow-hidden pop-card border-t-8 border-tasha-yellow flex flex-col">
+                    <div class="h-48 bg-amber-100 relative overflow-hidden flex items-center justify-center">
+                        <img src="IMG/Noticia3.jpg">
+                        <span class="absolute top-4 right-4 bg-white text-tasha-orange font-bold text-xs px-3 py-1 rounded-full shadow">CULTURA</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 font-semibold"><i class="fa-regular fa-calendar mr-1"></i> 20 de Octubre, 2026</span>
+                            <h3 class="text-xl font-bold font-title text-gray-800 mt-2 mb-3 hover:text-tasha-orange transition">Talleres Recreativos Gratuitos para Niños</h3>
+                            <p class="text-gray-600 text-sm">Abiertas las inscripciones para talleres de pintura, danza folclórica, ajedrez y fútbol en el Complejo Ollantaytambo.</p>
+                        </div>
+                        <button onclick="showNewsModal('Talleres Recreativos Ate', 'La Municipalidad invita a todos los niños y adolescentes a participar de los talleres culturales y deportivos que se desarrollarán en las 7 zonas del distrito.')" class="mt-4 text-tasha-orange font-bold font-title text-sm flex items-center gap-2 hover:translate-x-2 transition">
+                            Leer más <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTORIDADES MUNICIPALES (Alcalde & Cuerpo de Regidores) -->
+    <section id="alcaldia" class="py-16 bg-gradient-to-b from-sky-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="bg-tyrone-orange text-white font-title text-sm px-4 py-1 rounded-full uppercase">Liderazgo Distrital</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-title text-gray-800 mt-2">Nuestras Autoridades de Ate</h2>
+                <p class="text-gray-600 mt-3 font-semibold">Conoce al Alcalde y al Cuerpo de 15 Regidores que trabajan día a día por la mejora continua de nuestro distrito.</p>
+            </div>
+
+            <!-- Card Principal del Alcalde (Estilo Tyrone) -->
+            <div class="max-w-4xl mx-auto bg-tyrone-gradient rounded-3xl shadow-2xl p-6 md:p-10 text-white mb-16 pop-card relative overflow-hidden border-4 border-yellow-300">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-5 flex justify-center">
+                        <div class="w-48 h-48 md:w-56 md:h-56 rounded-full bg-white/20 p-3 border-4 border-white shadow-inner flex items-center justify-center relative">
+                            <!-- Avatar de Alcalde Ilustrativo -->
+                            <div class="w-full h-full rounded-full bg-amber-100 flex items-center justify-center text-tyrone-orange font-title text-7xl shadow-md">
+                                <img src="IMG/Alcalde.png" >
+                            </div>
+                            <span class="absolute bottom-2 bg-yellow-400 text-tyrone-orange font-title text-xs px-3 py-1 rounded-full font-bold shadow">Gestión 2023 - 2026</span>
+                        </div>
+                    </div>
+                    <div class="md:col-span-7 space-y-4 text-center md:text-left">
+                        <span class="bg-white/20 text-white font-title text-xs px-3 py-1 rounded-full uppercase">Alcalde Distrital de Ate</span>
+                        <h3 class="text-3xl md:text-4xl font-bold font-title text-yellow-200">Franco Vidal Morales</h3>
+                        <p class="text-amber-100 text-sm md:text-base leading-relaxed">
+                            "Trabajamos con el corazón, transparencia y dedicación para transformar a Ate en un distrito moderno, verde y seguro para cada una de nuestras familias."
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start text-xs font-bold">
+                            <span class="bg-white/20 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-envelope mr-1"></i> alcalde@muniate.gob.pe</span>
+                            <span class="bg-white/20 px-3 py-1.5 rounded-xl"><i class="fa-solid fa-phone mr-1"></i> (01) 351-5000 Ext. 101</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Regidores -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border-2 border-purple-100">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                    <div>
+                        <h3 class="text-2xl font-bold font-title text-austin-purple flex items-center gap-2">
+                            <i class="fa-solid fa-users"></i> Cuerpo de Regidores de Ate (15 Regidores)
+                        </h3>
+                        <p class="text-gray-500 text-sm">Comisiones ordinarias y representación vecinal.</p>
+                    </div>
+                    
+                </div>
+
+                <div class="card-grid">
+                    <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor1.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">GISELA CASAVILCA ÑAHUI</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="medioambiente">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor2.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">MONICA ROSANGELA CHAVEZ CAMPO</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="Salud">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor3.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">GERALDINE NANCY AGUIRRE GALARZA</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor4.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">LUIGGI PIERO FLORES PENSA</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor5.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">DAPHNE NICOLE PEREZ REYES</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor6.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">FABIO HUAMANCAYO ASTORAY</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor7.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">SILVANA EVELYN ANGLAS VASQUEZ</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor8.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">JORDY ESTEVENS MACHACA MEZA</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor9.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">DANNA VERONICA PEREA NUÑEZ</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor10.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">RICARDO ANTONIO PARADA DAVILA</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor11.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">ELIZABETH NANCY CABEZAS FLORES</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor12.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">ERASMO LAZARO BENDEZU</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor13.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">NELLY CUELLAR ALEGRIA</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor14.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">LEHA SUSAN CARHUARICRA MARCELO</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="card" data-comision="seguridad">
+                    <div class="card-body">
+                        <div class="avatar-container">
+                            <img src="IMG/Regidor15.png">
+                        </div>
+                        <div class="card-info" >
+                            <h3 class="name">JULIA JESY REYES OSCO</h3>
+                            <span class="role">REGIDOR MUNICIPAL</span>
+                        </div>
+                    </div>
+                </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATRACTIVOS TURÍSTICOS Y CULTURALES DE ATE -->
+    <section id="turismo" class="py-16 bg-uniqua-gradient text-white relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="bg-white text-uniqua-pink font-title text-sm px-4 py-1 rounded-full uppercase font-bold">Conoce Nuestra Riqueza</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-title mt-2">Atractivos Turísticos de Ate</h2>
+                <p class="text-pink-100 mt-2 font-semibold">Descubre los tesoros arqueológicos, deportivos y ecológicos que hacen único a nuestro distrito.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Atractivo 1: Puruchuco -->
+                <div class="bg-white text-gray-800 rounded-3xl p-5 pop-card flex flex-col justify-between border-b-8 border-pablo-blue">
+                    <div>
+                        <img style="width: 100%; height: 200px;" src="IMG/Puruchuco.jpg">
+                        <span class="text-xs font-bold text-pablo-blue uppercase bg-sky-100 px-2.5 py-1 rounded-md">Patrimonio Cultural</span>
+                        <h3 class="text-lg font-bold font-title mt-2 text-gray-800">Puruchuco</h3>
+                        <p class="text-xs text-gray-600 mt-1">Palacio incaico Palacio de Puruchuco y Museo de Sitio icónico del distrito.</p>
+                    </div>
+                    <button onclick="showTurismoModal('Zona Arqueológica Monumental Puruchuco', 'Es uno de los palacios prehispánicos mejor conservados del Perú. Perteneció a un Curaca Inca que administraba la zona del valle del Rímac.')" class="mt-4 w-full bg-pablo-blue hover:bg-sky-700 text-white py-2 rounded-xl text-xs font-bold font-title transition">
+                        Ver Detalles
+                    </button>
+                </div>
+
+                <!-- Atractivo 2: Huaycán de Pariachi -->
+                <div class="bg-white text-gray-800 rounded-3xl p-5 pop-card flex flex-col justify-between border-b-8 border-tyrone-orange">
+                    <div>
+                        <img style="width: 100%; height: 200px;"  src="IMG/Huaycan.jpg">
+                        <span class="text-xs font-bold text-tyrone-orange uppercase bg-amber-100 px-2.5 py-1 rounded-md">Sitio Arqueológico</span>
+                        <h3 class="text-lg font-bold font-title mt-2 text-gray-800">Huaycán de Pariachi</h3>
+                        <p class="text-xs text-gray-600 mt-1">Centro administrativo Yschma e Inca con amplios laberintos de barro.</p>
+                    </div>
+                    <button onclick="showTurismoModal('Sitio Arqueológico Huaycán de Pariachi', 'Importante asentamiento prehispánico con recintos, plazas y terrazas construidas con la técnica del tapial.')" class="mt-4 w-full bg-tyrone-orange hover:bg-amber-600 text-white py-2 rounded-xl text-xs font-bold font-title transition">
+                        Ver Detalles
+                    </button>
+                </div>
+
+                <!-- Atractivo 3: Estadio Monumental -->
+                <div class="bg-white text-gray-800 rounded-3xl p-5 pop-card flex flex-col justify-between border-b-8 border-austin-purple">
+                    <div>
+                        <img style="width: 100%; height: 200px;"  src="IMG/Estadio.jpg">
+                        <span class="text-xs font-bold text-austin-purple uppercase bg-purple-100 px-2.5 py-1 rounded-md">Deporte & Eventos</span>
+                        <h3 class="text-lg font-bold font-title mt-2 text-gray-800">Estadio Monumental U</h3>
+                        <p class="text-xs text-gray-600 mt-1">El estadio más grande de Sudamérica, sede del Club Universitario de Deportes.</p>
+                    </div>
+                    <button onclick="showTurismoModal('Estadio Monumental U', 'Con capacidad para más de 80,000 espectadores, es un ícono arquitectónico y deportivo del distrito ubicado en Mayorazgo.')" class="mt-4 w-full bg-austin-purple hover:bg-purple-800 text-white py-2 rounded-xl text-xs font-bold font-title transition">
+                        Ver Detalles
+                    </button>
+                </div>
+
+                <!-- Atractivo 4: Parque Huayna Cápac -->
+                <div class="bg-white text-gray-800 rounded-3xl p-5 pop-card flex flex-col justify-between border-b-8 border-ate-green">
+                    <div>
+                        <img style="width: 100%; height: 200px;"  src="IMG/ParqueZonal.jpg">
+                        <span class="text-xs font-bold text-ate-green uppercase bg-emerald-100 px-2.5 py-1 rounded-md">Naturaleza & Ecoturismo</span>
+                        <h3 class="text-lg font-bold font-title mt-2 text-gray-800">Parque Zonal Huayna Cápac</h3>
+                        <p class="text-xs text-gray-600 mt-1">Extensas áreas verdes, zonas de picnic, lagunas artificiales y deporte.</p>
+                    </div>
+                    <button onclick="showTurismoModal('Parque Zonal Huayna Cápac', 'Un pulmón verde para el distrito ideal para disfrutar en familia con canchas deportivas, juegos infantiles y amplias zonas de paseo.')" class="mt-4 w-full bg-ate-green hover:bg-emerald-700 text-white py-2 rounded-xl text-xs font-bold font-title transition">
+                        Ver Detalles
+                    </button>
+                </div>
+
+                <!-- Atractivo 5: Plaza de Vitarte -->
+                <div class="bg-white text-gray-800 rounded-3xl p-5 pop-card flex flex-col justify-between border-b-8 border-tasha-orange">
+                    <div>
+                        <img style="width: 100%; height: 200px;"  src="IMG/PlazaVitarte.jpg">
+                        <span class="text-xs font-bold text-tasha-orange uppercase bg-amber-100 px-2.5 py-1 rounded-md">Centro Histórico</span>
+                        <h3 class="text-lg font-bold font-title mt-2 text-gray-800">Plaza de Vitarte</h3>
+                        <p class="text-xs text-gray-600 mt-1">Corazón cívico de Ate, rodeado de la Iglesia Matriz y la histórica textil.</p>
+                    </div>
+                    <button onclick="showTurismoModal('Plaza Principal de Vitarte', 'El centro histórico y punto de reunión de la comunidad de Vitarte, cuna del movimiento obrero por las 8 horas de trabajo.')" class="mt-4 w-full bg-tasha-orange hover:bg-amber-600 text-white py-2 rounded-xl text-xs font-bold font-title transition">
+                        Ver Detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MESA DE PARTES VIRTUAL Y SERVICIOS CIUDADANOS INTERACTIVOS -->
+    <section id="tramites" class="py-16 bg-slate-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="bg-austin-cyan text-pablo-blue font-title text-sm px-4 py-1 rounded-full uppercase font-bold">Servicios Rápidos</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-title text-gray-800 mt-2">Trámites y Servicios Virtuales</h2>
+                <p class="text-gray-600 mt-2 font-semibold">Realiza tus gestiones desde la comodidad de tu hogar sin hacer filas.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                <!-- Columna Izquierda: Calculadora de Impuestos y Arbitrios -->
+                <div id="calculadora" class="lg:col-span-6 bg-white p-6 md:p-8 rounded-3xl shadow-xl border-4 border-austin-cyan">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-austin-gradient text-white rounded-2xl flex items-center justify-center text-2xl shadow">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold font-title text-austin-purple">Simulador de Arbitrios & Predial</h3>
+                            <p class="text-xs text-gray-500">Calcula una estimación de tus tributos municipales en Ate</p>
+                        </div>
+                    </div>
+
+                    <form id="calc-form" onsubmit="calculateTaxes(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Zona de Residencia en Ate</label>
+                            <select id="calc-zona" class="w-full bg-sky-50 border-2 border-sky-200 rounded-xl px-4 py-2.5 text-sm font-semibold focus:outline-none focus:border-austin-purple">
+                                <option value="1.0">Zona 1: Vitarte / Salamanca</option>
+                                <option value="0.85">Zona 2: Huaycán / Pariachi</option>
+                                <option value="0.95">Zona 3: Santa Clara / Valdiviezo</option>
+                                <option value="1.1">Zona 4: Mayorazgo / Ceres</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Área Construida (m²)</label>
+                                <input type="number" id="calc-area" min="20" max="1000" value="90" required class="w-full bg-sky-50 border-2 border-sky-200 rounded-xl px-4 py-2 text-sm font-semibold focus:outline-none focus:border-austin-purple">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Uso del Predio</label>
+                                <select id="calc-uso" class="w-full bg-sky-50 border-2 border-sky-200 rounded-xl px-4 py-2 text-sm font-semibold focus:outline-none focus:border-austin-purple">
+                                    <option value="1.0">Casa Habitación</option>
+                                    <option value="1.5">Comercio / Bodega</option>
+                                    <option value="2.0">Oficina / Galería</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-austin-gradient text-white py-3 rounded-xl font-title text-base font-bold shadow-lg hover:opacity-90 transition">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Calcular Estimación
+                        </button>
+                    </form>
+
+                    <!-- Resultado de la calculadora -->
+                    <div id="calc-result" class="hidden mt-6 p-4 bg-purple-50 rounded-2xl border-2 border-purple-200 text-center">
+                        <span class="text-xs text-austin-purple font-bold uppercase">Monto Trimestral Estimado</span>
+                        <div class="text-3xl font-bold font-title text-austin-purple my-1" id="monto-total">S/ 0.00</div>
+                        <p class="text-xs text-gray-600">Incluye Limpieza Pública, Parques/Jardines y Serenazgo.</p>
+                        <button onclick="alert('Redirigiendo a la pasarela de pagos SAT Ate...')" class="mt-3 bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded-lg text-xs font-bold">
+                            <i class="fa-solid fa-credit-card mr-1"></i> Pagar Online con Descuento
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Consulta de Expedientes & Licencia Express -->
+                <div id="mesa-partes" class="lg:col-span-6 space-y-6">
+
+                    <!-- Consulta de Trámites / Expedientes -->
+                    <div class="bg-white p-6 rounded-3xl shadow-xl border-4 border-tyrone-yellow">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-tyrone-orange text-white rounded-xl flex items-center justify-center text-xl shadow">
+                                <i class="fa-solid fa-folder-open"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold font-title text-tyrone-orange">Consulta tu Expediente Virtual</h3>
+                                <p class="text-xs text-gray-500">Revisa el estado de tu trámite en tiempo real</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <input type="text" id="exp-number" placeholder="Ej: EXP-2026-89412" class="flex-1 bg-amber-50 border-2 border-amber-200 rounded-xl px-4 py-2 text-sm font-semibold focus:outline-none focus:border-tyrone-orange">
+                            <button onclick="consultarExpediente()" class="bg-tyrone-orange hover:bg-amber-600 text-white px-5 py-2 rounded-xl font-title text-sm font-bold shadow">
+                                Buscar
+                            </button>
+                        </div>
+                        <div id="exp-result" class="hidden mt-4 p-3 bg-amber-50 rounded-xl text-xs text-gray-700 border border-amber-200">
+                            <!-- JS inyecta resultado -->
+                        </div>
+                    </div>
+
+                    <!-- Módulo Licencia de Funcionamiento Express -->
+                    <div class="bg-white p-6 rounded-3xl shadow-xl border-4 border-uniqua-pink">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-uniqua-pink text-white rounded-xl flex items-center justify-center text-xl shadow">
+                                <i class="fa-solid fa-store"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold font-title text-uniqua-pink">Licencia de Funcionamiento Express</h3>
+                                <p class="text-xs text-gray-500">Para bodegas, bazares y comercios de bajo riesgo en Ate</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-xs text-gray-600 mb-4">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500"></i> Emisión en menos de 24 horas hábiles.</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500"></i> Inspección ITSE posterior gratuita.</div>
+                        </div>
+
+                        <button onclick="alert('Abriendo formulario interactivo de Licencia Express Ate...')" class="w-full bg-uniqua-gradient text-white py-2.5 rounded-xl font-title text-sm font-bold shadow hover:opacity-90 transition">
+                            Iniciar Solicitud Express <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CALENDARIO DE EVENTOS Y RECOLECCIÓN DE RESIDUOS -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="bg-tasha-orange text-white font-title text-sm px-4 py-1 rounded-full uppercase">Comunidad Activa</span>
+                <h2 class="text-3xl md:text-4xl font-bold font-title text-gray-800 mt-2">Cronograma de Limpieza y Eventos</h2>
+                <p class="text-gray-600 mt-2 font-semibold">Horarios del camión recolector y actividades culturales de esta semana.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Horario de Recolección por Zonas -->
+                <div class="bg-amber-50 p-6 rounded-3xl border-2 border-tasha-yellow">
+                    <h3 class="text-xl font-bold font-title text-tasha-orange mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-truck-pie text-2xl"></i> Rutas del Camión Recolector de Basura
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="bg-white p-3.5 rounded-2xl shadow-sm flex justify-between items-center text-xs">
+                            <div>
+                                <strong class="text-sm font-title text-gray-800 block">Vitarte Centro & Mayorazgo</strong>
+                                <span class="text-gray-500">Lunes, Miércoles y Viernes</span>
+                            </div>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold">8:00 PM - 10:00 PM</span>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl shadow-sm flex justify-between items-center text-xs">
+                            <div>
+                                <strong class="text-sm font-title text-gray-800 block">Huaycán (Zonas A hasta la Z)</strong>
+                                <span class="text-gray-500">Martes, Jueves y Sábados</span>
+                            </div>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold">6:00 AM - 9:00 AM</span>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl shadow-sm flex justify-between items-center text-xs">
+                            <div>
+                                <strong class="text-sm font-title text-gray-800 block">Santa Clara & Pariachi</strong>
+                                <span class="text-gray-500">Diario</span>
+                            </div>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold">9:00 PM - 11:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eventos Culturales Próximos -->
+                <div class="bg-sky-50 p-6 rounded-3xl border-2 border-pablo-lightblue">
+                    <h3 class="text-xl font-bold font-title text-pablo-blue mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-star text-2xl"></i> Próximos Eventos en Ate
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="bg-white p-3.5 rounded-2xl shadow-sm flex items-center space-x-3 text-xs">
+                            <div class="bg-pablo-blue text-white p-2 rounded-xl text-center min-w-[50px]">
+                                <span class="block text-xs font-bold uppercase">NOV</span>
+                                <span class="text-lg font-bold font-title">05</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold font-title text-gray-800 text-sm">Feria Gastronómica "Sabores de Ate"</h4>
+                                <p class="text-gray-500">Plaza de Armas de Vitarte - Desde las 11:00 AM.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-2xl shadow-sm flex items-center space-x-3 text-xs">
+                            <div class="bg-uniqua-pink text-white p-2 rounded-xl text-center min-w-[50px]">
+                                <span class="block text-xs font-bold uppercase">NOV</span>
+                                <span class="text-lg font-bold font-title">12</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold font-title text-gray-800 text-sm">Cine Bajo las Estrellas</h4>
+                                <p class="text-gray-500">Parque Zonal Huayna Cápac - Función Gratuita 6:30 PM.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAPA IFRAME DINÁMICO -->
+    <section>
+        <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-5xl font-bold font-title text-gray-800 mt-2">Ubicación de la Municipalidad de Ate Vitarte</h2>
+            </div>
+        <div class="lg:col-span-7">
+                    <div class="bg-slate-900 p-3 rounded-3xl shadow-[8px_8px_0px_0px_#2B7FFF] border-4 border-slate-900">
+                        <div class="relative w-full h-96 rounded-2xl overflow-hidden bg-slate-200">
+                            <iframe id="googleMapIframe" class="w-full h-full border-0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.2516794990515!2d-76.91924139999999!3d-12.026186599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c538cc519b3f%3A0xaa744fc2669a0d56!2sMunicipalidad%20de%20Ate!5e0!3m2!1ses-419!2spe!4v1793163457392!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <!-- FOOTER INFORMATIVO Y CONTACTO -->
+    <footer class="bg-slate-900 text-white pt-12 pb-8 border-t-8 border-pablo-yellow">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Columna 1: Info Municipal -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        
+                        <span class="text-xl font-bold font-title text-yellow-300">Municipalidad de Ate</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Av. Nicolás de Piérola 234, Vitarte, Ate - Lima, Perú.<br>
+                        RUC: 20131377811
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="https://www.facebook.com/share/1A1dvgdwca" class="w-9 h-9 bg-slate-800 hover:bg-pablo-blue rounded-full flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https:www.instagram.com/nuevoate.municipalidad?psln=bGp5NnpqZDlrNzli" class="w-9 h-9 bg-slate-800 hover:bg-pink-600 rounded-full flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Central de Emergencias Ate -->
+                <div>
+                    <h4 class="text-base font-bold font-title text-tyrone-yellow mb-4">Números de Emergencia</h4>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-red-400"></i> Central Serenazgo: (01) 351-5000</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-ambulance text-red-400"></i> Ambulancia Ate: (01) 351-5005</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-fire-extinguisher text-red-400"></i> Bomberos Vitarte N° 169: 116</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-red-400"></i> Comisaría de Vitarte: (01) 356-0662</li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Enlaces Rápidos -->
+                <div>
+                    <h4 class="text-base font-bold font-title text-austin-cyan mb-4">Portal Transparencia</h4>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li><a href="#" class="hover:text-yellow-300 transition">Portal de Transparencia Estándar</a></li>
+                        <li><a href="#" class="hover:text-yellow-300 transition">Convocatorias CAS 2026</a></li>
+                        <li><a href="#" class="hover:text-yellow-300 transition"> Rendición de Cuentas</a></li>
+                        <li><a href="#" class="hover:text-yellow-300 transition">Obras Públicas en Ejecución</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Horario de Atención -->
+                <div>
+                    <h4 class="text-base font-bold font-title text-uniqua-pink mb-4">Atención Presencial</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                        Lunes a Viernes: 8:00 AM - 5:00 PM<br>
+                        Sábados (Sede Central): 9:00 AM - 1:00 PM
+                    </p>
+                    <div class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                        <span class="text-xs font-bold text-green-400 flex items-center gap-1">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
+                            Sede Central Abierta
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+                <p>© 2026 Municipalidad Distrital de Ate. Diseño Inspirado en la Alegría y Color de los Backyardigans.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CHATBOT ASISTENTE VIRTUAL BACKYARDIGAN ("EL AMIGO DE ATE") -->
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
+        <!-- Botón Flotante para abrir Chatbot -->
+        <button id="chatbot-toggle-btn" onclick="toggleChatbot()" class="w-16 h-16 rounded-full bg-uniqua-gradient text-white flex items-center justify-center text-3xl shadow-2xl chat-bounce border-4 border-white hover:scale-110 transition">
+            <i class="fa-solid fa-face-smile"></i>
+        </button>
+
+        <!-- Ventana del Chatbot -->
+        <div id="chatbot-window" class="hidden absolute bottom-20 right-0 w-80 md:w-96 bg-white rounded-3xl shadow-2xl border-4 border-uniqua-pink overflow-hidden flex flex-col h-[450px]">
+            <!-- Header del Chat -->
+            <div class="bg-uniqua-gradient text-white p-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-title font-bold text-base leading-tight">Vecino Amigo de Ate</h4>
+                        <span class="text-[10px] bg-white/30 px-2 py-0.5 rounded-full font-semibold">Asistente Virtual 24/7</span>
+                    </div>
+                </div>
+                <button onclick="toggleChatbot()" class="text-white hover:text-yellow-300 text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Cuerpo de Mensajes -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-pink-50/50 text-xs">
+                <!-- Mensaje de bienvenida inicial -->
+                <div class="flex items-start space-x-2">
+                    <div class="w-7 h-7 bg-uniqua-pink text-white rounded-full flex items-center justify-center text-xs font-bold">
+                        VA
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl shadow-sm border border-pink-100 max-w-[80%] text-gray-700">
+                        ¡Hola! Soy tu <strong>Amigo Virtual de Ate</strong>. 🎨 ¿En qué te puedo ayudar hoy sobre nuestro distrito?
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opciones Rápidas de Pregunta -->
+            <div class="p-2 bg-white border-t border-pink-100 flex flex-wrap gap-1">
+                <button onclick="sendQuickMessage('¿Dónde pago mis arbitrios?')" class="bg-sky-100 text-pablo-blue text-[10px] px-2.5 py-1 rounded-full font-bold hover:bg-sky-200">
+                    💳 Pagos / Arbitrios
+                </button>
+                <button onclick="sendQuickMessage('Número de Serenazgo Ate')" class="bg-amber-100 text-tyrone-orange text-[10px] px-2.5 py-1 rounded-full font-bold hover:bg-amber-200">
+                    🚨 Serenazgo 24h
+                </button>
+                <button onclick="sendQuickMessage('¿Cómo solicito Licencia de Funcionamiento?')" class="bg-purple-100 text-austin-purple text-[10px] px-2.5 py-1 rounded-full font-bold hover:bg-purple-200">
+                    🏪 Licencias Express
+                </button>
+            </div>
+
+            <!-- Input del Chat -->
+            <div class="p-3 bg-white border-t border-gray-100 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Escribe tu consulta aquí..." onkeypress="handleChatKey(event)" class="flex-1 bg-gray-100 rounded-full px-4 py-2 text-xs focus:outline-none focus:bg-pink-50 border border-gray-200">
+                <button onclick="sendChatMessage()" class="bg-uniqua-pink hover:bg-pink-600 text-white w-9 h-9 rounded-full flex items-center justify-center text-sm shadow">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE NOTICIAS Y TURISMO -->
+    <div id="info-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-pablo-lightblue relative transform transition-all">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            <div class="text-center space-y-4">
+                <div class="w-16 h-16 bg-pablo-gradient text-white rounded-2xl mx-auto flex items-center justify-center text-3xl shadow-lg">
+                    <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <h3 id="modal-title" class="text-2xl font-bold font-title text-gray-800"></h3>
+                <p id="modal-body" class="text-sm text-gray-600 leading-relaxed"></p>
+                <button onclick="closeModal()" class="bg-pablo-blue hover:bg-sky-700 text-white px-6 py-2 rounded-xl font-title text-sm font-bold shadow">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGICA JAVASCRIPT DINÁMICA E INTERACTIVA -->
+    <script>
+
+        // Inicialización al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDate();
+            renderRegidores(regidoresData);
+            setupMobileMenu();
+        });
+
+        // Formato de fecha actual
+        function renderDate() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date().toLocaleDateString('es-ES', options);
+            document.getElementById('current-date').innerText = today.charAt(0).toUpperCase() + today.slice(1);
+        }
+
+        // Renderizar Tarjetas de Regidores
+        function renderRegidores(items) {
+            const container = document.getElementById('regidores-container');
+            container.innerHTML = '';
+
+            items.forEach(reg => {
+                const card = document.createElement('div');
+                card.className = `bg-gray-50 p-4 rounded-2xl border-l-4 ${reg.color} shadow-sm hover:shadow-md transition flex flex-col justify-between`;
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center space-x-3 mb-2">
+                            <div class="w-9 h-9 bg-purple-100 text-austin-purple rounded-full flex items-center justify-center font-bold text-sm">
+                                <i class="fa-solid fa-user-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold font-title text-gray-800 text-sm">${reg.nombre}</h4>
+                                <span class="text-[10px] text-gray-500 uppercase font-semibold">Regidor Municipal</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 bg-white p-2 rounded-xl border border-gray-200 mt-1">${reg.cargo}</p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-gray-200 flex justify-between items-center text-[10px] text-gray-400">
+                        <span><i class="fa-solid fa-building-flag"></i> Municipalidad de Ate</span>
+                        <a href="mailto:regidores@muniate.gob.pe" class="text-austin-purple hover:underline font-bold">Contactar</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Filtrar Regidores por comisión
+        function filterRegidores() {
+            const val = document.getElementById('regidor-filter').value;
+            if (val === 'todos') {
+                renderRegidores(regidoresData);
+            } else {
+                const filtered = regidoresData.filter(r => r.comision === val);
+                renderRegidores(filtered);
+            }
+        }
+
+        // Menú Móvil Toggle
+        function setupMobileMenu() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+
+        // Calculadora Tributaria (Predial + Arbitrios)
+        function calculateTaxes(e) {
+            e.preventDefault();
+            const zona = parseFloat(document.getElementById('calc-zona').value);
+            const area = parseFloat(document.getElementById('calc-area').value);
+            const uso = parseFloat(document.getElementById('calc-uso').value);
+
+            // Fórmula aproximada de cálculo de tributos
+            const baseTributo = (area * 1.85) * zona * uso;
+            const arbitrios = 45.00 * zona;
+            const totalTrimestral = baseTributo + arbitrios;
+
+            document.getElementById('monto-total').innerText = `S/ ${totalTrimestral.toFixed(2)}`;
+            document.getElementById('calc-result').classList.remove('hidden');
+        }
+
+        // Simulación de Consulta de Expediente
+        function consultarExpediente() {
+            const val = document.getElementById('exp-number').value.trim();
+            const res = document.getElementById('exp-result');
+            
+            if(!val) {
+                alert('Por favor, ingresa un número de expediente válido (Ej: EXP-2026-89412).');
+                return;
+            }
+
+            res.classList.remove('hidden');
+            res.innerHTML = `
+                <div class="flex items-center gap-2 text-green-700 font-bold mb-1">
+                    <i class="fa-solid fa-circle-check"></i> Expediente Encontrado: ${val}
+                </div>
+                <p><strong>Estado:</strong> En Evaluación por la Gerencia de Desarrollo Urbano.</p>
+                <p class="mt-1 text-gray-500">Último movimiento: Ayer 3:45 PM - Derivado a Inspección Técnica.</p>
+            `;
+        }
+
+        // Modales Informativos
+        function showNewsModal(title, body) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-body').innerText = body;
+            document.getElementById('info-modal').classList.remove('hidden');
+        }
+
+        function showTurismoModal(title, body) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-body').innerText = body;
+            document.getElementById('info-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('info-modal').classList.add('hidden');
+        }
+
+        // Chatbot Interactivo
+        function toggleChatbot() {
+            const chatWin = document.getElementById('chatbot-window');
+            chatWin.classList.toggle('hidden');
+        }
+
+        function handleChatKey(e) {
+            if(e.key === 'Enter') sendChatMessage();
+        }
+
+        function sendQuickMessage(msg) {
+            document.getElementById('chat-input').value = msg;
+            sendChatMessage();
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const txt = input.value.trim();
+            if(!txt) return;
+
+            const msgs = document.getElementById('chat-messages');
+
+            // Agregar mensaje del usuario
+            const userMsgDiv = document.createElement('div');
+            userMsgDiv.className = 'flex items-end justify-end space-x-2';
+            userMsgDiv.innerHTML = `
+                <div class="bg-uniqua-pink text-white p-3 rounded-2xl shadow-sm max-w-[80%]">
+                    ${txt}
+                </div>
+            `;
+            msgs.appendChild(userMsgDiv);
+
+            input.value = '';
+            msgs.scrollTop = msgs.scrollHeight;
+
+            // Respuesta automática simulada del Bot
+            setTimeout(() => {
+                let botReply = "¡Hola! Para realizar trámites o consultar expedientes en Ate, puedes usar nuestra Mesa de Partes Virtual arriba.";
+                const lower = txt.toLowerCase();
+
+                if(lower.includes('pago') || lower.includes('arbitrio')) {
+                    botReply = "Puedes calcular y pagar tus arbitrios con un 15% de descuento en la sección 'Simulador de Arbitrios' del portal.";
+                } else if(lower.includes('serenazgo') || lower.includes('emergencia')) {
+                    botReply = "🚨 La Central de Serenazgo de Ate atiende 24 horas llamando al (01) 351-5000 o directo a la Línea 105.";
+                } else if(lower.includes('licencia')) {
+                    botReply = "¡Excelente! Ofrecemos Licencias Express para bodegas y comercios de bajo riesgo en menos de 24 horas hábiles.";
+                }
+
+                const botMsgDiv = document.createElement('div');
+                botMsgDiv.className = 'flex items-start space-x-2';
+                botMsgDiv.innerHTML = `
+                    <div class="w-7 h-7 bg-uniqua-pink text-white rounded-full flex items-center justify-center text-xs font-bold">
+                        VA
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl shadow-sm border border-pink-100 max-w-[80%] text-gray-700">
+                        ${botReply}
+                    </div>
+                `;
+                msgs.appendChild(botMsgDiv);
+                msgs.scrollTop = msgs.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>
